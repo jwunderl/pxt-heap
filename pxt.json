@@ -7,8 +7,8 @@
     },
     "files": [
         "README.md",
-        "main.blocks",
-        "main.ts"
+        "main.ts",
+        "heap.ts"
     ],
     "testFiles": [
         "test.ts"
