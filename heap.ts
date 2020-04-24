@@ -30,7 +30,7 @@ class Heap<T> {
 
             if (curr == i) return;
 
-            [data[0], data[1]] = [data[1], data[0]];
+            [ data[0], data[1] ] = [ data[1], data[0] ];
             i = curr;
         }
     }
