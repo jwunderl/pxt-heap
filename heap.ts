@@ -20,17 +20,17 @@ class Heap<T> {
             const right = this.rightChild(i);
             let curr = i;
 
-            if (left < max && this.comparator(data[curr], data[left]) < 0) {
+            if (left < max && this.comparator(data[curr], data[left]) > 0) {
                 curr = left;
             }
 
-            if (right < max && this.comparator(data[curr], data[right]) < 0) {
+            if (right < max && this.comparator(data[curr], data[right]) > 0) {
                 curr = right;
             }
 
-            if (curr == i) return;
-
-            [ data[0], data[1] ] = [ data[1], data[0] ];
+            if (curr === i)
+                return;
+            [data[curr], data[i]] = [data[i], data[curr]];
             i = curr;
         }
     }
@@ -43,7 +43,7 @@ class Heap<T> {
             const parentIndex = this.parent(i);
             const parent = this.store[parentIndex];
 
-            if (this.comparator(parent, curr) < 0)
+            if (this.comparator(parent, curr) <= 0)
                 break;
 
             this.store[i] = parent;
@@ -55,7 +55,7 @@ class Heap<T> {
 
     push(v: T) {
         this.store.push(v);
-        this.bubbleUp()
+        this.bubbleUp();
     }
 
     pop(): T {
@@ -65,6 +65,10 @@ class Heap<T> {
         this.heapify(0)
 
         return output;
+    }
+
+    peek(): T { 
+        return this.store[0];
     }
 
     get length() {
