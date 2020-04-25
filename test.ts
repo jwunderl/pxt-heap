@@ -16,8 +16,10 @@ function testMaxHeap() {
     }
     
     let prev = maxHeap.pop()
+    console.log(prev)
     while (maxHeap.length) {
         const next = maxHeap.pop();
+        console.log(next)
         if (prev < next) {
             console.log("!!!! BAD");
         }

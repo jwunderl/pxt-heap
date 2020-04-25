@@ -63,7 +63,7 @@ class Heap<T> {
         const output = this.store[0];
         const nextRoot = this.store.pop();
 
-        if (this.length) {
+        if (this.length > 0) {
             this.store[0] = nextRoot;
             this.percolateDown(0);
         }
