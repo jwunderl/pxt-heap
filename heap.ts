@@ -28,8 +28,8 @@ class Heap<T> {
                 curr = right;
             }
 
-            if (curr === i)
-                return;
+            if (curr == i)
+                break;
 
             [data[curr], data[i]] = [data[i], data[curr]];
             i = curr;
@@ -61,9 +61,12 @@ class Heap<T> {
 
     pop(): T {
         const output = this.store[0];
+        const nextRoot = this.store.pop();
 
-        this.store[0] = this.store.pop();
-        this.percolateDown(0);
+        if (this.length) {
+            this.store[0] = nextRoot;
+            this.percolateDown(0);
+        }
 
         return output;
     }

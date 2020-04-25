@@ -1,6 +1,12 @@
+game.consoleOverlay.setVisible(true);
+
+console.log("test 1")
 testMaxHeap();
+console.log("test 2")
 testMinHeap();
+console.log("test 3")
 testHeapify();
+console.log("test over")
 
 
 function testMaxHeap() {
