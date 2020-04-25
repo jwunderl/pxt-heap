@@ -11,7 +11,7 @@ class Heap<T> {
         this.store = [];
     }
 
-    protected heapify(i: number) {
+    protected percolateDown(i: number) {
         const data = this.store;
         const max = this.store.length;
 
@@ -30,12 +30,13 @@ class Heap<T> {
 
             if (curr === i)
                 return;
+
             [data[curr], data[i]] = [data[i], data[curr]];
             i = curr;
         }
     }
 
-    protected bubbleUp() {
+    protected percolateUp() {
         let i = this.store.length - 1;
 
         while (i > 0) {
@@ -55,14 +56,14 @@ class Heap<T> {
 
     push(v: T) {
         this.store.push(v);
-        this.bubbleUp();
+        this.percolateUp();
     }
 
     pop(): T {
         const output = this.store[0];
 
         this.store[0] = this.store.pop();
-        this.heapify(0)
+        this.percolateDown(0);
 
         return output;
     }
@@ -89,7 +90,7 @@ class Heap<T> {
         let i = Math.floor(data.length / 2 - 1);
 
         while (i >= 0) {
-            output.heapify(i);
+            output.percolateDown(i);
             i -= 1;
         }
 
