@@ -28,6 +28,7 @@ This image may take a few minutes to refresh.
 
 ## Supported targets
 
-* for PXT/*
+* for PXT/arcade
+* for PXT/microbit
 (The metadata above is needed for package search.)
 
