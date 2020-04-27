@@ -1,4 +1,5 @@
 // game.consoleOverlay.setVisible(true);
+let spriteCount = 10;
 
 console.log("test 1")
 testMaxHeap();
@@ -7,15 +8,31 @@ testMinHeap();
 console.log("test 3")
 testHeapify();
 console.log("test 4")
-testHeapifyWithSprites();
-console.log("test over")
+buildEnemies();
+console.log("test over");
 
-controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
+
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    spriteCount++;
+    makeEnemy();
+});
+
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (spriteCount > 2) {
+        spriteCount--;
+        Math.pickRandom(sprites.allOfKind(SpriteKind.Enemy)).destroy();
+    }
+})
+
+
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     for (const e of sprites.allOfKind(SpriteKind.Enemy)) {
         e.destroy();
     }
-    testHeapifyWithSprites();
+    buildEnemies();
 });
+
+game.onUpdate(annotateEnemySprites);
 
 function testMaxHeap() {
     const maxHeap = new Heap((a: number, b: number) => b - a);
@@ -72,9 +89,8 @@ function testHeapify() {
     }
 }
 
-function testHeapifyWithSprites() {
-    for (let i = 0; i < 10; i++) {
-        const e = sprites.create(img`
+function makeEnemy() {
+    const e = sprites.create(img`
             . . . . c c . .
             . c a a a a . .
             . a a f f b a .
@@ -85,7 +101,17 @@ function testHeapifyWithSprites() {
             . . a a b b c .
         `, SpriteKind.Enemy);
         e.setPosition(Math.randomRange(15, screen.width - 15), Math.randomRange(15, screen.height - 15));
+        e.setVelocity(Math.randomRange(-100, 100), Math.randomRange(-100, 100));
+        e.setFlag(SpriteFlag.BounceOnWall, true);
+}
+
+function buildEnemies() {
+    for (let i = 0; i < spriteCount; i++) {
+        makeEnemy();
     }
+}
+
+function annotateEnemySprites() {
     const myEnemies = sprites.allOfKind(SpriteKind.Enemy);
     const myEnemyHeap = Heap.buildHeap<Sprite>(
         (a, b) => (a.x ** 2 + a.y ** 2) - (b.x ** 2 + b.y ** 2),
