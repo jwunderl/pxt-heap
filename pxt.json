@@ -2,7 +2,9 @@
     "name": "pxt-heap",
     "version": "0.0.7",
     "description": "",
-    "dependencies": {},
+    "dependencies": {
+        "core": "*"
+    },
     "files": [
         "README.md",
         "main.ts",
