@@ -111,8 +111,4 @@ class Heap<T> {
     protected rightChild(i: number) {
         return (i << 1) + 2;
     }
-
-    toString() {
-        return console.inspect(this.store);
-    }
 }
