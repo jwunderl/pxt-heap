@@ -2,9 +2,7 @@
     "name": "pxt-heap",
     "version": "0.0.5",
     "description": "",
-    "dependencies": {
-        "device": "*"
-    },
+    "dependencies": {},
     "files": [
         "README.md",
         "main.ts",
@@ -14,5 +12,9 @@
         "test.ts"
     ],
     "public": true,
+    "supportedTargets": [
+        "arcade",
+        "microbit"
+    ],
     "preferredEditor": "tsprj"
 }
