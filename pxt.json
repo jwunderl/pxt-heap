@@ -13,6 +13,9 @@
     "testFiles": [
         "test.ts"
     ],
+    "testDependencies": {
+        "device": "*"
+    },
     "public": true,
     "supportedTargets": [
         "arcade",
